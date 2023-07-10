@@ -7,6 +7,17 @@ class PostService {
     const allPosts = await this.postRepository.findAllPosts();
     return allPosts;
   };
+
+  createPost = async (writer, password, title, content, userId) => {
+    const createdPost = await this.postRepository.createPost(
+      writer,
+      password,
+      title,
+      content,
+      userId
+    );
+    return createdPost;
+  };
 }
 
 module.exports = PostService;

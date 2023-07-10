@@ -17,7 +17,8 @@ class PostController {
       writer,
       password,
       title,
-      content
+      content,
+      userId
     );
     res.status(201).json({ message: "게시글 작성에 성공하였습니다." });
   };

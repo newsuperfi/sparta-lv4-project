@@ -8,6 +8,17 @@ class PostRepository {
     });
     return posts;
   };
+
+  createPost = async (writer, password, title, content, userId) => {
+    const post = await Posts.create({
+      writer,
+      password,
+      title,
+      content,
+      userId,
+    });
+    return post;
+  };
 }
 
 module.exports = PostRepository;
