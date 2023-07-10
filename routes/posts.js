@@ -1,29 +1,34 @@
 const express = require("express");
 const router = express.Router();
 const auth = require("../middlewares/auth");
-
 const { Posts, Users } = require("../models");
+
+const PostController = require("../controllers/post.controller");
+
+const postController = new PostController();
+
+router.get("/", auth, postController.getPosts);
 
 router
   .route("/")
-  .get(auth, async (req, res) => {
-    const posts = await Posts.findAll({
-      include: [{ model: Users, required: true }],
-      // order: [["createdAt", "DESC"]],
-    });
-    if (posts.length) {
-      // const results = posts.map((post) => {
-      //   return {
-      //     작성자: post.writer,
-      //     제목: post.title,
-      //     작성일시: post.createdAt,
-      //   };
-      // });
-      res.json(posts);
-    } else {
-      res.json({ errorMessage: "포스트가 존재하지 않습니다." });
-    }
-  })
+  // .get(auth, async (req, res) => {
+  //   const posts = await Posts.findAll({
+  //     include: [{ model: Users, required: true }],
+  //     // order: [["createdAt", "DESC"]],
+  //   });
+  //   if (posts.length) {
+  //     // const results = posts.map((post) => {
+  //     //   return {
+  //     //     작성자: post.writer,
+  //     //     제목: post.title,
+  //     //     작성일시: post.createdAt,
+  //     //   };
+  //     // });
+  //     res.json(posts);
+  //   } else {
+  //     res.json({ errorMessage: "포스트가 존재하지 않습니다." });
+  //   }
+  // })
   .post(auth, (req, res) => {
     try {
       const { writer, password, title, content } = req.body;
