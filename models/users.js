@@ -1,4 +1,5 @@
 "use strict";
+const { model } = require("mongoose");
 const { Model } = require("sequelize");
 const Sequelize = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
@@ -10,14 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasMany(models.Posts, {
-        sourceKey: "userId",
-        foreignKey: "UserId",
-      });
-      this.hasMany(models.Comments, {
-        sourceKey: "userId",
-        foreignKey: "UserId",
-      });
+      this.hasMany(models.Posts, { sourceKey: "userId", foreignKey: "userId" });
+      this.hasMany(models.Comments, { foreignKey: "userId" });
+      this.hasMany(models.Likes, { sourceKey: "userId", foreignKey: "UserId" });
     }
   }
   Users.init(
