@@ -76,7 +76,7 @@ router.get("/", auth, async (req, res) => {
 
   res.status(200).json(likeList);
 });
-
+g
 // 게시글 좋아요 / 취소
 router.get("/:postId", auth, async (req, res) => {
   const { userId } = res.locals.user;
