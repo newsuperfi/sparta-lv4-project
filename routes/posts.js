@@ -16,6 +16,9 @@ router.post("/", auth, postController.createPost);
 // 특정 게시글 조회
 router.get("/:postId", auth, postController.getPost);
 
+// 게시글 삭제
+router.delete("/:postId", auth, postController.deletePost);
+
 // router.route("/");
 // .get(auth, async (req, res) => {
 //   const posts = await Posts.findAll({

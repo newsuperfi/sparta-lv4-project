@@ -28,6 +28,13 @@ class PostController {
     const { code, result } = await this.postService.getPost(postId);
     return res.status(code).json(result);
   };
+
+  deletePost = async (req, res) => {
+    const { userId } = res.locals.user;
+    const { postId } = req.params;
+    const { code, result } = await this.postService.deletePost(userId, postId);
+    return res.status(code).json(result);
+  };
 }
 
 module.exports = PostController;
