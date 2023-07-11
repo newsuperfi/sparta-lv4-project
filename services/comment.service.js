@@ -6,6 +6,17 @@ class CommentService {
     const comments = await this.commentRepository.findComments(postId);
     return comments;
   };
+
+  createComment = async (postId, userId, commenter, password, content) => {
+    const comment = await this.commentRepository.createComment(
+      commenter,
+      password,
+      content,
+      postId,
+      userId
+    );
+    return comment;
+  };
 }
 
 module.exports = CommentService;

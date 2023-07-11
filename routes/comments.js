@@ -6,6 +6,7 @@ const CommentController = require("../controllers/comment.controller");
 const commentController = new CommentController();
 
 router.get("/:postId", commentController.getComments);
+router.post("/:postId", auth, commentController.createComment);
 
 router
   .route("/:postId")
@@ -32,13 +33,13 @@ router
   //   }
   // })
   .post(auth, (req, res) => {
-    const PostId = req.params.postId;
+    const { postId } = req.params;
     const { commenter, password, content } = req.body;
-    const UserId = res.locals.user.userId;
+    const { userId } = res.locals.user;
     if (!content) {
       res.json({ errorMessage: "댓글 내용을 입력해주세요." });
     } else {
-      Comments.create({ PostId, commenter, UserId, password, content });
+      Comments.create({ postId, commenter, userId, password, content });
       res.json({ message: "댓글이 작성되었습니다." });
     }
   });
