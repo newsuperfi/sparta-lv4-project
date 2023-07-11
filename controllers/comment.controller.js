@@ -45,6 +45,18 @@ class CommentController {
       return res.status(code).json(message);
     }
   };
+
+  deleteComment = async (req, res) => {
+    const { commentId } = req.params;
+    const { userId } = res.locals.user;
+    const { password } = req.body;
+    const { code, message } = await this.commentService.deleteComment(
+      commentId,
+      userId,
+      password
+    );
+    return res.status(code).json(message);
+  };
 }
 
 module.exports = CommentController;

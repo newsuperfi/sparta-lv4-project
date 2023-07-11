@@ -8,6 +8,7 @@ const commentController = new CommentController();
 router.get("/:postId", commentController.getComments);
 router.post("/:postId", auth, commentController.createComment);
 router.put("/:commentId", auth, commentController.modifyComment);
+router.delete("/:commentId", auth, commentController.deleteComment);
 
 router.route("/:postId");
 // .get(auth, async (req, res) => {
