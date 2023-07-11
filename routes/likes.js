@@ -4,6 +4,10 @@ const { Likes, Posts, Users } = require("../models");
 const { Op } = require("sequelize");
 const { Sequelize } = require("sequelize");
 const auth = require("../middlewares/auth");
+const LikeController = require("../controllers/like.controller");
+const likeController = new LikeController();
+
+router.get("/:postId", auth, likeController.likePost);
 
 // 좋아요 한 게시글 전체 조회
 router.get("/", auth, async (req, res) => {
