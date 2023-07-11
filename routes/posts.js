@@ -7,10 +7,16 @@ const PostController = require("../controllers/post.controller");
 
 const postController = new PostController();
 
-router.get("/", auth, postController.getPosts);
+// 전체 게시글 조회
+router.get("/", auth, postController.getAllPosts);
+
+// 게시글 작성
 router.post("/", auth, postController.createPost);
 
-router.route("/");
+// 특정 게시글 조회
+router.get("/:postId", auth, postController.getPost);
+
+// router.route("/");
 // .get(auth, async (req, res) => {
 //   const posts = await Posts.findAll({
 //     include: [{ model: Users, required: true }],

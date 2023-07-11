@@ -3,8 +3,8 @@ const PostService = require("../services/post.service");
 class PostController {
   postService = new PostService();
 
-  getPosts = async (req, res) => {
-    const posts = await this.postService.findAllPosts();
+  getAllPosts = async (req, res) => {
+    const posts = await this.postService.getAllPosts();
 
     res.status(200).json(posts);
   };
@@ -21,6 +21,12 @@ class PostController {
       userId
     );
     res.status(201).json({ message: "게시글 작성에 성공하였습니다." });
+  };
+
+  getPost = async (req, res) => {
+    const { postId } = req.params;
+    const { code, result } = await this.postService.getPost(postId);
+    return res.status(code).json(result);
   };
 }
 

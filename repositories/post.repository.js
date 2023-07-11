@@ -1,7 +1,7 @@
 const { Posts } = require("../models");
 
 class PostRepository {
-  findAllPosts = async () => {
+  getAllPosts = async () => {
     const posts = await Posts.findAll({
       attributes: ["writer", "title", "createdAt"],
       order: [["createdAt", "DESC"]],
@@ -16,6 +16,13 @@ class PostRepository {
       title,
       content,
       userId,
+    });
+    return post;
+  };
+
+  getPost = async (postId) => {
+    const post = await Posts.findOne({
+      where: { postId },
     });
     return post;
   };
