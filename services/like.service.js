@@ -16,6 +16,15 @@ class LikeService {
       }
     }
   };
+
+  findLikedPost = async (userId) => {
+    const results = await this.likeRepository.findLikedPost(userId);
+    if (!results) {
+      return { code: 200, results: "좋아요 한 게시글이 없습니다." };
+    } else {
+      return { code: 200, results };
+    }
+  };
 }
 
 module.exports = LikeService;
