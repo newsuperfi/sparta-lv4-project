@@ -27,6 +27,15 @@ class PostRepository {
     return post;
   };
 
+  modifyPost = async (postId, title, content) => {
+    const result = await Posts.update(
+      { title, content },
+      { where: { postId } }
+    );
+    console.log("repository result", result);
+    return result;
+  };
+
   deletePost = async (postId) => {
     const result = await Posts.destroy({ where: { postId } });
     return result;
