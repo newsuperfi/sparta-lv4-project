@@ -10,7 +10,7 @@ router.post("/:postId", auth, commentController.createComment);
 router.put("/:commentId", auth, commentController.modifyComment);
 router.delete("/:commentId", auth, commentController.deleteComment);
 
-router.route("/:postId");
+// router.route("/:postId");
 // .get(auth, async (req, res) => {
 //   const postId = req.params.postId;
 
@@ -45,7 +45,7 @@ router.route("/:postId");
 //   }
 // });
 
-router.route("/:commentId");
+// router.route("/:commentId");
 // .delete(auth, async (req, res) => {
 //   const commentId = req.params.commentId;
 //   const password = req.body.password;
