@@ -9,7 +9,7 @@ class PostService {
   };
 
   createPost = async (writer, password, title, content, userId) => {
-    const createdPost = await this.postRepository.createPost(
+    const post = await this.postRepository.createPost(
       writer,
       password,
       title,

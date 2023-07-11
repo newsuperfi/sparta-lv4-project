@@ -13,7 +13,7 @@ class PostController {
     const { writer, password, title, content } = req.body;
     const { userId } = res.locals.user;
 
-    const createPostData = await this.postService.createPost(
+    const post = await this.postService.createPost(
       writer,
       password,
       title,

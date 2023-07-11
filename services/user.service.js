@@ -7,6 +7,7 @@ class UserService {
 
   login = async (nickname, password) => {
     const user = await this.userRepository.findUser(nickname);
+    if (!user) return { code: 400, message: "존재하지 않는 회원입니다." };
     if (password !== user.password) {
       return { code: 400, message: "비밀번호를 확인해주세요." };
     } else {

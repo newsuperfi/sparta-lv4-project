@@ -1,7 +1,7 @@
 const { Comments } = require("../models");
 
 class CommentRepository {
-  findComments = async (postId) => {
+  findAllComments = async (postId) => {
     const comments = await Comments.findAll({ where: { postId } });
     return comments;
   };
@@ -14,6 +14,18 @@ class CommentRepository {
       content,
     });
     return comment;
+  };
+  findComment = async (commentId) => {
+    const comment = Comments.findOne({ where: { commentId } });
+    return comment;
+  };
+
+  modifyComment = async (commentId, content) => {
+    const modifiedComment = await Comments.update(
+      { content },
+      { where: { commentId } }
+    );
+    return modifiedComment;
   };
 }
 
