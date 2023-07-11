@@ -5,28 +5,24 @@ class UserController {
 
   login = async (req, res) => {
     const { nickname, password } = req.body;
-    const { code, data, token } = await this.userService.login(
-      res,
+    const { token, code, message } = await this.userService.login(
       nickname,
       password
     );
 
     res.cookie("Authorization", `Bearer ${token}`);
-    return res.status(code).json(data);
-  };
-
-  checkExUser = async (req, res) => {
-    const { nickname, email, password, confirmPassword } = req.body;
+    return res.status(code).json(message);
   };
 
   signUp = async (req, res) => {
     const { nickname, email, password, confirmPassword } = req.body;
-    const {} = await this.userService.signUp(
+    const { code, message } = await this.userService.signUp(
       nickname,
       email,
       password,
       confirmPassword
     );
+    return res.status(code).json(message);
   };
 }
 

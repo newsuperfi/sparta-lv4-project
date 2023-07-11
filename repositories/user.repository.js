@@ -13,6 +13,7 @@ class UserRepository {
         [Op.or]: [{ nickname }, { email }],
       },
     });
+    return exUser;
   };
 
   createUser = async (nickname, email, password) => {
