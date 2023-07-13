@@ -19,14 +19,14 @@ class PostController {
       const { writer, password, title, content } = req.body;
       const { userId } = res.locals.user;
 
-      const { code, result } = await this.postService.createPost(
+      const { code, post, result } = await this.postService.createPost(
         writer,
         password,
         title,
         content,
         userId
       );
-      res.status(code).json({ result });
+      res.status(code).json({ post, result });
     } catch (err) {
       console.error(err);
       res.status(500).send("알 수 없는 에러가 발생했습니다.");

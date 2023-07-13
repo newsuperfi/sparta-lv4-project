@@ -21,7 +21,7 @@ class CommentController {
       if (!content) {
         return res.status(400).json({ message: "댓글 내용을 입력해주세요" });
       } else {
-        const comment = await this.commentService.createComment(
+        await this.commentService.createComment(
           postId,
           userId,
           commenter,

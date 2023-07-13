@@ -5,23 +5,22 @@ const { Sequelize } = require("sequelize");
 class LikeRepository {
   findPost = async (userId, postId) => {
     const post = await Posts.findOne({ where: { postId } });
-    console.log("postpostpost", post);
     const like = await Likes.findOne({
       where: { [Op.and]: [{ UserId: userId }, { PostId: postId }] },
     });
-    console.log("likelikelike", like);
     return { post, like };
   };
 
   likePost = async (userId, postId) => {
-    const result = await Likes.create({ UserId: userId, PostId: postId });
-    return result;
+    await Likes.create({ UserId: userId, PostId: postId });
+    return;
   };
 
   unlikePost = async (userId, postId) => {
-    const result = await Likes.destroy({
+    await Likes.destroy({
       where: { [Op.and]: [{ UserId: userId }, { PostId: postId }] },
     });
+    return;
   };
 
   findLikedPost = async (userId) => {

@@ -29,8 +29,8 @@ class CommentRepository {
   };
 
   deleteComment = async (commentId) => {
-    const result = await Comments.destroy({ where: { commentId } });
-    return result;
+    await Comments.destroy({ where: { commentId } });
+    return;
   };
 }
 

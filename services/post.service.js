@@ -16,7 +16,7 @@ class PostService {
       content,
       userId
     );
-    return { code: 201, result: "게시글이 작성되었습니다." };
+    return { code: 201, post, result: "게시글이 작성되었습니다." };
   };
 
   getPost = async (postId) => {
