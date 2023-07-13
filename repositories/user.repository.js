@@ -16,7 +16,7 @@ class UserRepository {
     return exUser;
   };
 
-  createUser = async (nickname, email, password) => {
+  createUser = async ({ nickname, email, password }) => {
     const user = await Users.create({ nickname, email, password });
     return user;
   };
