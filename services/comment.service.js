@@ -22,7 +22,7 @@ class CommentService {
     const comment = await this.commentRepository.findComment(commentId);
     if (!comment) {
       return { code: 404, message: "없는 댓글입니다." };
-    } else if (comment) {
+    } else {
       if (userId !== comment.userId) {
         return { code: 400, message: "댓글 작성자가 아닙니다." };
       } else if (comment.password !== password) {
