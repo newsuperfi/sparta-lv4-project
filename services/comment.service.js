@@ -21,10 +21,10 @@ class CommentService {
   modifyComment = async (userId, content, commentId, password) => {
     const comment = await this.commentRepository.findComment(commentId);
     if (!comment) {
-      return { code: 404, message: "없는 댓글입니다." };
+      return { code: 404, message: "존재하지 않는 댓글입니다." };
     } else {
       if (userId !== comment.userId) {
-        return { code: 400, message: "댓글 작성자가 아닙니다." };
+        return { code: 403, message: "댓글 작성자가 아닙니다." };
       } else if (comment.password !== password) {
         return { code: 400, message: "비밀번호를 확인해주세요." };
       } else {
@@ -46,7 +46,7 @@ class CommentService {
     if (!findComment)
       return { code: 404, message: "존재하지 않는 댓글입니다." };
     if (findComment.userId !== userId) {
-      return { code: 400, message: "댓글 작성자가 아닙니다." };
+      return { code: 403, message: "댓글 작성자가 아닙니다." };
     } else if (findComment.password !== password) {
       return { code: 400, message: "비밀번호를 확인해주세요." };
     } else {

@@ -5,7 +5,7 @@ class LikeService {
   likePost = async (userId, postId) => {
     const { like, post } = await this.likeRepository.findPost(userId, postId);
     if (!post) {
-      return { code: 400, message: "존재하지 않는 게시글입니다." };
+      return { code: 404, message: "존재하지 않는 게시글입니다." };
     } else {
       if (like) {
         await this.likeRepository.unlikePost(userId, postId);

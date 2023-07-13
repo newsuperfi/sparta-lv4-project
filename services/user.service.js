@@ -27,7 +27,7 @@ class UserService {
       const exUser = await this.userRepository.checkExUser(nickname, email);
       if (exUser) {
         return {
-          code: 400,
+          code: 409,
           message: "이미 존재하는 닉네임 혹은 이메일입니다.",
         };
       } else {
